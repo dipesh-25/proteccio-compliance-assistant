@@ -10,7 +10,7 @@ Built as an assignment submission for the AI Innovation Internship at Proteccio 
 ## Demo
 
 [Add your 2–5 minute demo video link here]
-[Add your deployed prototype link here]
+[https://proteccio-compliance-assistant-fpouyv9fyyikjxgu4cuevp.streamlit.app/]
 
 ---
 
@@ -34,7 +34,7 @@ Built as an assignment submission for the AI Innovation Internship at Proteccio 
 - **Dockerized**: ready to containerize and deploy
 - **Graceful degradation**: works fully offline/without any API key
   (rule-based summary + keyword Q&A); automatically upgrades to LLM-generated
-  answers if an `ANTHROPIC_API_KEY` is configured
+  answers if a `GEMINI_API_KEY` is configured
 
 ---
 
@@ -105,13 +105,13 @@ Built as an assignment submission for the AI Innovation Internship at Proteccio 
    keyword mentions — reflecting real-world compliance impact.
 
 4. **Generative layer (LLM).** The compliance summary and the conversational
-   Q&A are the actual "AI" components. When an `ANTHROPIC_API_KEY` is
-   present, both features call Claude (`claude-sonnet-4-6`) with the
-   *detected findings* (never the full raw document, to limit blast radius)
-   as grounding context, so the model summarizes and answers strictly from
-   what was actually detected instead of hallucinating findings. If no key
-   is configured, both features fall back to deterministic logic so the app
-   is always demoable.
+   Q&A are the actual "AI" components. When a `GEMINI_API_KEY` is
+   present, both features call Google Gemini (`gemini-2.0-flash`) via the
+   `google-genai` SDK, with the *detected findings* (never the full raw
+   document, to limit blast radius) as grounding context, so the model
+   summarizes and answers strictly from what was actually detected instead
+   of hallucinating findings. If no key is configured, both features fall
+   back to deterministic logic so the app is always demoable.
 
 5. **Data masking.** All matched values are masked (`ab***yz`) before ever
    being rendered, logged, or sent to an LLM prompt, so the compliance tool
@@ -133,12 +133,13 @@ pip install -r requirements.txt
 
 ### 2. (Optional) Enable LLM mode
 
-Copy `.env.example` to `.env` and add an Anthropic API key to unlock
+Copy `.env.example` to `.env` and add a free Google Gemini API key
+(get one at https://aistudio.google.com/apikey — no card required) to unlock
 LLM-generated summaries and richer Q&A:
 
 ```bash
 cp .env.example .env
-# then edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+# then edit .env and set GEMINI_API_KEY=...
 ```
 
 The app works fully without this step, in rule-based mode.
@@ -205,8 +206,8 @@ docker run -p 8501:8501 --env-file .env compliance-assistant
 - **Document parsing**: `pdfplumber`, `pandas`
 - **Detection engine**: Python `re` (regex) with a custom severity-weighted
   risk model
-- **Generative AI**: Anthropic Claude API (optional, with rule-based
-  fallback)
+- **Generative AI**: Google Gemini API (`gemini-2.0-flash`, free tier,
+  optional, with rule-based fallback)
 - **Deployment**: Docker
 
 ---
