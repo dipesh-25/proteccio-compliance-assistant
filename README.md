@@ -9,7 +9,7 @@ Built as an assignment submission for the AI Innovation Internship at Proteccio 
 
 ## Demo
 
-[Add your 2–5 minute demo video link here]
+[(https://www.loom.com/share/71af55168cf84539b450992e3d1d90a2)]
 [https://proteccio-compliance-assistant-fpouyv9fyyikjxgu4cuevp.streamlit.app/]
 
 ---
