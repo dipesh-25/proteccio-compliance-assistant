@@ -1,0 +1,19 @@
+CONFIDENTIAL - Employee Onboarding Record
+
+Employee Name: Rohan Verma
+Employee ID: EMP4521
+Email: rohan.verma@example-corp.com
+Phone: +91 9876543210
+Aadhaar Number: 2345 6789 1234
+PAN Number: ABCPV1234E
+Bank Account Number: 123456789012
+IFSC Code: HDFC0001234
+Credit Card (reimbursement setup): 4111 1111 1111 1111
+
+Internal system credentials (for IT setup only - do not distribute):
+api_key: sk-test-4f8a92b1c7d6e5f3a2b1c0d9e8f7a6b5
+password: Welcome@123
+
+Note: This document is proprietary and intended for HR use only. Trade secret
+process documents referenced in Appendix B must not be shared outside the
+organization.
